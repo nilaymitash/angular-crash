@@ -16,8 +16,22 @@ export class TasksComponent implements OnInit {
     //this.tasks = this.taskService.getTasks();
     //usualy when fetching from backend application, you would wanna use observables instead of simply calling the function
 
-    this.taskService.getTasksFromServer().subscribe((tasks) => (this.tasks = tasks));
+    //this.taskService.getTasksFromServer().subscribe((tasks) => (this.tasks = tasks));
     //pretty much like promises from angularjs
+
+    this.taskService.getTasksFromRealServer().subscribe((tasks) => (this.tasks = tasks));
+  }
+
+  deleteTask(task: Task): void {
+    this.taskService.deleteTask(task).subscribe(
+      () => (
+        this.tasks = this.tasks.filter((t) => t.id !== task.id)
+        ));
+  }
+
+  toggleReminder(task: Task): void {
+    task.reminder = !task.reminder;
+    this.taskService.toggleTaskReminder(task).subscribe();
   }
 
 }
