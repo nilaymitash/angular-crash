@@ -1,3 +1,4 @@
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
 <app-task-item 
     *ngFor="let task of tasks" 
     [task]="task" 
@@ -5,8 +6,7 @@
     (onToggleReminder)="toggleReminder(task)"
 ></app-task-item>
 <!-- The brackets, [], cause Angular to evaluate the right-hand 
-    side 
-    of the assignment as a dynamic expression. 
+    side of the assignment as a dynamic expression. 
     Without the brackets, Angular treats the right-hand
      side as a string literal and sets the property to that 
      static value. -->
